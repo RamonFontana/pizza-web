@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Link } from "react-router";
+import { useMutation } from "@tanstack/react-query";
+import { signIn } from "../../api/sign-in";
 
 const singInFormSchema = z.object({
   email: z.string().email(),
@@ -20,13 +22,22 @@ export function SingIn() {
     formState: { isSubmitting },
   } = useForm<SingInForm>();
 
-  function handleSingIn(data: SingInForm) {
-    toast.success("Enviamos um link de autenticação para o seu e-mail", {
-      action: {
-        label: "Reenviar",
-        onClick: () => handleSingIn(data),
-      },
-    });
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: signIn,
+  });
+
+  async function handleSingIn(data: SingInForm) {
+    try {
+      await authenticate({ email: data.email });
+      toast.success("Enviamos um link de autenticação para o seu e-mail", {
+        action: {
+          label: "Reenviar",
+          onClick: () => handleSingIn(data),
+        },
+      });
+    } catch (error) {
+      toast.error("Credenciais inválidas");
+    }
   }
 
   return (
