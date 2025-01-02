@@ -24,8 +24,8 @@ export const router = createBrowserRouter([
     path: "/",
     element: <AuthLayout />,
     children: [
-      { path: "/sing-in", element: <SingIn /> },
-      { path: "/sing-up", element: <SingUp /> },
+      { path: "/sign-in", element: <SingIn /> },
+      { path: "/sign-up", element: <SingUp /> },
     ],
   },
 ]);
