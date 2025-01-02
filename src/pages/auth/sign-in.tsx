@@ -9,13 +9,13 @@ import { Link, useSearchParams } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "../../api/sign-in";
 
-const singInFormSchema = z.object({
+const signInFormSchema = z.object({
   email: z.string().email(),
 });
 
-type SignInForm = z.infer<typeof singInFormSchema>;
+type SignInForm = z.infer<typeof signInFormSchema>;
 
-export function SingIn() {
+export function SignIn() {
   const [searchParams] = useSearchParams();
 
   const {
@@ -32,13 +32,13 @@ export function SingIn() {
     mutationFn: signIn,
   });
 
-  async function handleSingIn(data: SignInForm) {
+  async function handleSignIn(data: SignInForm) {
     try {
       await authenticate({ email: data.email });
       toast.success("Enviamos um link de autenticação para o seu e-mail", {
         action: {
           label: "Reenviar",
-          onClick: () => handleSingIn(data),
+          onClick: () => handleSignIn(data),
         },
       });
     } catch (error) {
@@ -51,7 +51,7 @@ export function SingIn() {
       <Helmet title="Login" />
       <div className="p-8">
         <Button variant="link" asChild className="absolute right-8 top-8">
-          <Link to="/sing-up">Nono estabelecimento</Link>
+          <Link to="/sign-up">Nono estabelecimento</Link>
         </Button>
 
         <div className="flex w-[350px] flex-col justify-center gap-6">
@@ -64,7 +64,7 @@ export function SingIn() {
             </p>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit(handleSingIn)}>
+          <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
             <div className="space-y-2">
               <Label htmlFor="email">Seu e-mail</Label>
               <Input {...register("email")} id="email" type="email" />

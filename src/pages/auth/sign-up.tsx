@@ -9,29 +9,29 @@ import { Link, useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import { registerRestaurant } from "../../api/register.restaurant";
 
-const singUpFormSchema = z.object({
+const signUpFormSchema = z.object({
   restaurantName: z.string(),
   managerName: z.string(),
   phone: z.string(),
   email: z.string().email(),
 });
 
-type SingUpForm = z.infer<typeof singUpFormSchema>;
+type SignUpForm = z.infer<typeof signUpFormSchema>;
 
-export function SingUp() {
+export function SignUp() {
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<SingUpForm>();
+  } = useForm<SignUpForm>();
 
   const { mutateAsync: registerRestaurantFn } = useMutation({
     mutationFn: registerRestaurant,
   });
 
-  async function handleSingUp(data: SingUpForm) {
+  async function handleSignUp(data: SignUpForm) {
     try {
       await registerRestaurantFn({
         restaurantName: data.restaurantName,
@@ -43,7 +43,7 @@ export function SingUp() {
       toast.success("Restaurante cadastrado com sucesso!", {
         action: {
           label: "Login",
-          onClick: () => navigate(`/sing-in?email=${data.email}`),
+          onClick: () => navigate(`/sign-in?email=${data.email}`),
         },
       });
     } catch (error) {
@@ -56,7 +56,7 @@ export function SingUp() {
       <Helmet title="Cadastro" />
       <div className="p-8">
         <Button variant="link" asChild className="absolute right-8 top-8">
-          <Link to="/sing-in">Fazer login</Link>
+          <Link to="/sign-in">Fazer login</Link>
         </Button>
         <div className="flex w-[350px] flex-col justify-center gap-6">
           <div className="ga-2 flex flex-col text-center">
@@ -68,7 +68,7 @@ export function SingUp() {
             </p>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit(handleSingUp)}>
+          <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>
             <div className="space-y-2">
               <Label htmlFor="restaurantName">Nome do estabelecimento</Label>
               <Input {...register("restaurantName")} type="text" />
