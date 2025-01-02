@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "../../../components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import { getMonthOrdersAmount } from "../../../api/get-moth-orders-amout";
+import { getMonthOrdersAmount } from "../../../api/get-month-orders-amount";
 import { MetricCardSkeleton } from "../../../components/metric-card-skeleton";
 
 export function MonthOrdersAmountCard() {

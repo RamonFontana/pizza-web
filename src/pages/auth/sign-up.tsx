@@ -7,7 +7,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
-import { registerRestaurant } from "../../api/register.restaurant";
+import { registerRestaurant } from "../../api/register-restaurant";
 
 const signUpFormSchema = z.object({
   restaurantName: z.string(),
