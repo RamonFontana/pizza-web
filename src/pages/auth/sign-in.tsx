@@ -42,7 +42,7 @@ export function SignIn() {
         },
       });
     } catch (error) {
-      toast.error("Credenciais inválidas");
+      toast.error("Credenciais inválidas.");
     }
   }
 
@@ -51,7 +51,7 @@ export function SignIn() {
       <Helmet title="Login" />
       <div className="p-8">
         <Button variant="link" asChild className="absolute right-8 top-8">
-          <Link to="/sign-up">Nono estabelecimento</Link>
+          <Link to="/sign-up">Novo estabelecimento</Link>
         </Button>
 
         <div className="flex w-[350px] flex-col justify-center gap-6">

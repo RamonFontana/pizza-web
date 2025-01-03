@@ -9,13 +9,13 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getProfile } from "../api/get-profile";
-import { getManagedRestaurant } from "../api/get-managed-restaurant";
+import { getProfile } from "@/api/get-profile";
+import { getManagedRestaurant } from "@/api/get-managed-restaurant";
 import { Skeleton } from "./ui/skeleton";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import { StoreProfileDialog } from "./store-profile-dialog";
 import { useNavigate } from "react-router";
-import { signOut } from "../api/sign-out";
+import { signOut } from "@/api/sign-out";
 
 export function AccountMenu() {
   const navigate = useNavigate();

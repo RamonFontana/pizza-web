@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
-import { Label } from "../../components/ui/label";
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
-import { registerRestaurant } from "../../api/register-restaurant";
+import { registerRestaurant } from "@/api/register-restaurant";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 const signUpFormSchema = z.object({
   restaurantName: z.string(),
